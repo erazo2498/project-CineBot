@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "559448139689",
+    "firebase_url": "https://cinebot-3a72b.firebaseio.com",
+    "project_id": "cinebot-3a72b",
+    "storage_bucket": "cinebot-3a72b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:559448139689:android:3ba1a3568677a9e8d9c6b8",
+        "android_client_info": {
+          "package_name": "com.edu.cinebot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "559448139689-v1p4uq5u72ads8l589fjhlfqa7ra5g3p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdZnxY7W3vush0UOxP9akSs8nTRL4B2GQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "559448139689-v1p4uq5u72ads8l589fjhlfqa7ra5g3p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

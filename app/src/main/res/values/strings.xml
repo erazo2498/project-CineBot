@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CineBot</string>
+    <string name="bienvenido">Bienvenido a</string>
+    <string name="descripcionImagen">Imagen utilizada como el logo de la aplicación</string>
+    <string name="peliculas">Mis peliculas</string>
+    <string name="buscar">Buscar</string>
+</resources>

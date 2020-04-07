@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CineBot</string>
+    <string name="bienvenido">Welcome to</string>
+    <string name="descripcionImagen">Image used as the app logo</string>
+    <string name="peliculas">My movies</string>
+    <string name="buscar">search</string>
+</resources>
