@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.edu.cinebot.adapter.MovieAdapter;
 import com.edu.cinebot.entity.Movie;
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.listViewMovies)
     public ListView listViewMovies;
     @BindView(R.id.txtSearch)
-    public TextView txtSearch;
+    public EditText txtSearch;
     private MovieAdapter movieAdapter;
 
     @Override
