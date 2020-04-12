@@ -5,4 +5,17 @@
     <string name="descripcionImagen">Image used as the app logo</string>
     <string name="peliculas">My movies</string>
     <string name="buscar">search</string>
+    <string name="titulo">"Title: "</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="contraseña">password</string>
+    <string name="action_sign_in_short">Ingresa</string>
+    <string name="welcome">Welcome !</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">Login failed</string>
+    <string name="usuario">User</string>
+    <string name="titulo_activity_login">Log in</string>
+    <string name="home">Start</string>
+    <string name="estrenos">premieres</string>
+    <string name="cartelera">billboard</string>
 </resources>

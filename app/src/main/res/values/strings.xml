@@ -1,7 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">CineBot</string>
     <string name="bienvenido">Bienvenido a</string>
     <string name="descripcionImagen">Imagen utilizada como el logo de la aplicación</string>
-    <string name="peliculas">Mis peliculas</string>
+    <string name="peliculas">Nuestras peliculas</string>
     <string name="buscar">Buscar</string>
+    <string name="titulo">Titulo: </string>
+    <string name="titulo_activity_login">Iniciar sección</string>
+    <string name="usuario">Usuario</string>
+    <string name="contraseña">Contraseña</string>
+    <string name="action_sign_in">Ingresa o Registro</string>
+    <string name="action_sign_in_short">Registrarse</string>
+    <string name="welcome">Bienvenido !</string>
+    <string name="invalid_password">La contraseña debe ser más de 5 caracteres</string>
+    <string name="invalid_username">Usuario incorrecto</string>
+    <string name="login_failed">Ingreso fallido</string>
+    <string name="home">Inicio</string>
+    <string name="estrenos">estrenos</string>
+    <string name="cartelera">cartelera</string>
 </resources>
