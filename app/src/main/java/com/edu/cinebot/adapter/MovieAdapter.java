@@ -1,5 +1,6 @@
 package com.edu.cinebot.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -90,7 +91,7 @@ public class MovieAdapter extends BaseAdapter implements Filterable {
             convertView.setTag(holder);
         }
         holder.image.setImageResource(listMoviesOut.get(position).getImage());
-        holder.txtName.setText(listMoviesOut.get(position).getName());
+        holder.txtName.setText("Titulo: "+listMoviesOut.get(position).getName());
         holder.txtDescription.setText(listMoviesOut.get(position).getDescription());
         return convertView;
     }
