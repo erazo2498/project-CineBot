@@ -20,7 +20,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        tools:ignore="MissingConstraints"></androidx.appcompat.widget.Toolbar>
+        app:title="CineBoot"
+        app:titleTextColor="@color/white">
+    </androidx.appcompat.widget.Toolbar>
 
     <EditText
         android:id="@+id/txtUsuario"

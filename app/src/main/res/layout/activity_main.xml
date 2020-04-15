@@ -17,7 +17,9 @@
         android:textColor="@android:color/white"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        tools:ignore="MissingConstraints"></androidx.appcompat.widget.Toolbar>
+        app:title="CineBoot"
+        app:titleTextColor="@color/white"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView"

@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToChatBotActivity(View view) {
-
+        Intent intent = new Intent(getApplicationContext(), ChatBotActivity.class);
+        startActivity(intent);
     }
 }
