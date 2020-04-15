@@ -1,11 +1,13 @@
-package com.edu.cinebot;
+package com.edu.cinebot.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -13,8 +15,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.edu.cinebot.R;
 import com.edu.cinebot.adapter.MovieAdapter;
 import com.edu.cinebot.entity.Movie;
+import com.edu.cinebot.view.InfoActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +43,19 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         loadInfo();
         searchOnTextListener();
+        onMovieClickListener();
     }
+
+    private void onMovieClickListener() {
+            listViewMovies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long ld) {
+                    Intent intent = new Intent(getApplicationContext(), InfoActivity.class);
+                    startActivity(intent);
+                }
+            });
+    }
+
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
@@ -104,5 +120,9 @@ public class MainActivity extends AppCompatActivity {
                 // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void goToChatBotActivity(View view) {
+
     }
 }

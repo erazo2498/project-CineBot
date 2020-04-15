@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.edu.cinebot">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_cinebot"
@@ -9,10 +11,11 @@
         android:roundIcon="@mipmap/ic_cinebot_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".view.ui.login.LoginActivity"
-            android:label="@string/titulo_activity_login"></activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".view.ChatBotActivity"></activity>
+        <activity android:name=".view.RegisterActivity" />
+        <activity android:name=".view.LoginActivity" />
+        <activity android:name=".view.InfoActivity" />
+        <activity android:name=".view.MainActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
