@@ -12,7 +12,6 @@ public class Usuario {
     private String contrasena;
     private String nombre;
     private String apellido;
-    private Date fechaNacimiento;
     private String identificacion;
     private String tipoUsuario;
 }

@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private MovieAdapter movieAdapter;
     private FirebaseAuth mAuth;
     private FirebaseStorage storage;
+    public static boolean txtSearchVisible;
     private DatabaseReference myDatabase;
     public List<Movie> listMovies;
     private final int PICK_FOTO=1;
@@ -116,7 +117,8 @@ public class MainActivity extends AppCompatActivity {
                         String urlImagen = ds.child("url").getValue().toString();
                         String name = ds.child("nombre").getValue().toString();
                         String descripcion =ds.child("descripcion").getValue().toString();
-                        listMovies.add(new Movie( urlImagen, name , descripcion));
+                        String tipoDePresentacion =ds.child("tipoDePresentacion").getValue().toString();
+                        listMovies.add(new Movie( urlImagen, name , descripcion, tipoDePresentacion));
                     }
                     movieAdapter= new MovieAdapter(getBaseContext(),listMovies);
                     listViewMovies.setAdapter(movieAdapter);
@@ -132,25 +134,33 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_home:
-                Toast.makeText(this,"Has pulsado home",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Todas las peliculas",Toast.LENGTH_SHORT).show();
+                txtSearch.setVisibility(View.GONE);
+                txtSearchVisible=false;
+                movieAdapter.getFilter().filter("");
                 return true;
 
             case R.id.action_search:
                 if (txtSearch.getVisibility() == View.GONE) {
                     txtSearch.setVisibility(View.VISIBLE);
-                }else txtSearch.setVisibility(View.GONE);
+                    txtSearchVisible=true;
+                }else txtSearch.setVisibility(View.GONE); txtSearchVisible=false;
                 return true;
             case R.id.estrenos:
                 if (txtSearch.getVisibility() == View.GONE) {
-
+                    txtSearch.setVisibility(View.GONE);
+                    txtSearchVisible=false;
                 }
-                Toast.makeText(this,"Has pulsado estrenos",Toast.LENGTH_SHORT).show();
+                movieAdapter.getFilter().filter("ESTRENO");
+                Toast.makeText(this,"Mostrando estrenos",Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.cartelera:
                 if (txtSearch.getVisibility() == View.GONE) {
-
+                    txtSearch.setVisibility(View.GONE);
+                    txtSearchVisible=false;
                 }
-                Toast.makeText(this,"Has pulsado cartelera",Toast.LENGTH_SHORT).show();
+                movieAdapter.getFilter().filter("CARTELERA");
+                Toast.makeText(this,"Mostrando cartelera",Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 // If we got here, the user's action was not recognized.

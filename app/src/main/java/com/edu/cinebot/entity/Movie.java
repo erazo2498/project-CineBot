@@ -11,4 +11,5 @@ public class Movie implements Serializable {
     private String image;
     private String name;
     private String description;
+    private String tipoDePresentacion;
 }

@@ -33,8 +33,6 @@ public class RegisterActivity extends AppCompatActivity {
     public EditText nombretxt;
     @BindView(R.id.txtApellido)
     public EditText apellidotxt;
-    @BindView(R.id.txtFechaNacimiento)
-    public EditText fechaNacimientotxt;
     @BindView(R.id.txtIdentificacion)
     public EditText identificacionTxt;
 
@@ -81,9 +79,6 @@ public class RegisterActivity extends AppCompatActivity {
         else if (apellidotxt.getText().toString().equals("")){
             apellidotxt.setError("El apellido es requerido");
         }
-        else if (fechaNacimientotxt.getText().toString().equals("")){
-            fechaNacimientotxt.setError("La fecha de nacimiento es requerida");
-        }
         else if (identificacionTxt.getText().toString().equals("")){
             identificacionTxt.setError("La identificacion es requerida");
         }
@@ -97,7 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
     private void crearUsuarioBaseDatos(){
         Usuario usuario = new Usuario(emailtxt.getText().toString(),contrasenatxt.getText().toString(),
-                nombretxt.getText().toString(),apellidotxt.getText().toString(),null, identificacionTxt.getText().toString(),"CLIENTE");
+                nombretxt.getText().toString(),apellidotxt.getText().toString(), identificacionTxt.getText().toString(),"CLIENTE");
         databaseReference.child("Usuario").child(usuario.getIdentificacion()).setValue(usuario);
     }
     private void registrarUsuarioConAutenticacion(String email, String password){

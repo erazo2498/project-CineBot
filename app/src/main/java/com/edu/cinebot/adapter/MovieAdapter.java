@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.edu.cinebot.R;
 import com.edu.cinebot.entity.Movie;
+import com.edu.cinebot.view.MainActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -66,7 +67,12 @@ public class MovieAdapter extends BaseAdapter implements Filterable {
 
                     constraint = constraint.toString().toLowerCase();
                     for (int i = 0; i < listMoviesIn.size(); i++) {
-                        String data = listMoviesIn.get(i).getName();
+                        String data;
+                        if(MainActivity.txtSearchVisible){
+                            data = listMoviesIn.get(i).getName();
+                        }else {
+                            data = listMoviesIn.get(i).getTipoDePresentacion();
+                        }
                         if (data.toLowerCase().contains(constraint.toString())) {
                             FilteredArrList.add(listMoviesIn.get(i));
                         }
