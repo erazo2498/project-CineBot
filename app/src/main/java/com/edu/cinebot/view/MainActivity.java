@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseStorage storage;
     private DatabaseReference myDatabase;
+    public List<Movie> listMovies;
     private final int PICK_FOTO=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +69,11 @@ public class MainActivity extends AppCompatActivity {
             listViewMovies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long ld) {
+                    Movie movie = listMovies.get(position);
                     Intent intent = new Intent(getApplicationContext(), InfoActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("movie", movie);
+                    intent.putExtras(bundle);
                     startActivity(intent);
                 }
             });
@@ -98,18 +103,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
-    private void abrirGaleria(){
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Seleccione una imagen"), PICK_FOTO);
-    }
     private void loadInfo() {
         onCreateOptionsMenu(myToolbar.getMenu());
         //Sirve para reconocer el click de los item del menu de la toolbar
         myToolbar.setOnMenuItemClickListener(item -> onOptionsItemSelected(item));
-        List<Movie> listMovies = new ArrayList<>();
+        listMovies = new ArrayList<>();
         myDatabase.child("Peliculas").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

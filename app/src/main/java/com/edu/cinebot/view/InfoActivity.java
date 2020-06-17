@@ -41,9 +41,14 @@ public class InfoActivity extends AppCompatActivity {
     private void loadInfo() {
         myToolbar.setTitleTextColor(Color.WHITE);
         myToolbar.setTitle("Informacion de la pelicula");
-        /*List<Movie> listMovies = new ArrayList<>();
-        listMovies.add(new Movie(R.drawable.bloodshot,"Bloodshot" ,"Ray Garrison, un soldado de élite que murió en combate, es resucitado gracias a una avanzada tecnología que también le da la habilidad de fuerza sobrehumana y rápida recuperación. Basada en el comic."));
-        movieAdapter= new MovieAdapter(this,listMovies);*/
+        Bundle objetoEnviado = getIntent().getExtras();
+        Movie movieSeleccionada = null;
+        if(objetoEnviado!=null){
+            movieSeleccionada = (Movie) objetoEnviado.getSerializable("movie");
+        }
+        List<Movie> listMovies = new ArrayList<>();
+        listMovies.add(movieSeleccionada);
+        movieAdapter= new MovieAdapter(this,listMovies);
         listViewMovies.setAdapter(movieAdapter);
 
 
