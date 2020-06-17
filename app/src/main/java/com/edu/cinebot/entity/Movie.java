@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Movie {
-    private int image;
+    private String image;
     private String name;
     private String description;
 }

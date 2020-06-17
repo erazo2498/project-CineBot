@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.edu.cinebot.R;
 import com.edu.cinebot.entity.Movie;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,7 +90,8 @@ public class MovieAdapter extends BaseAdapter implements Filterable {
             holder = new ViewHolder(convertView);
             convertView.setTag(holder);
         }
-        holder.image.setImageResource(listMoviesOut.get(position).getImage());
+
+        Picasso.get().load(listMoviesOut.get(position).getImage()).into(holder.image);
         holder.txtName.setText("Titulo: "+listMoviesOut.get(position).getName());
         holder.txtDescription.setText(listMoviesOut.get(position).getDescription());
         return convertView;

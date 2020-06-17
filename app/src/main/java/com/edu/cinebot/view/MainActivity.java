@@ -12,15 +12,21 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.edu.cinebot.R;
 import com.edu.cinebot.adapter.MovieAdapter;
 import com.edu.cinebot.entity.Movie;
-import com.edu.cinebot.view.InfoActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,16 +43,25 @@ public class MainActivity extends AppCompatActivity {
     public Toolbar myToolbar;
     private MovieAdapter movieAdapter;
     private FirebaseAuth mAuth;
+    private FirebaseStorage storage;
+    private DatabaseReference myDatabase;
+    private final int PICK_FOTO=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setSupportActionBar(myToolbar);
         ButterKnife.bind(this);
-        mAuth = FirebaseAuth.getInstance();
+        cargandoInfoFirebase();
         loadInfo();
         searchOnTextListener();
         onMovieClickListener();
+    }
+
+    private void cargandoInfoFirebase() {
+        mAuth = FirebaseAuth.getInstance();
+        storage = FirebaseStorage.getInstance();
+        myDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
     private void onMovieClickListener() {
@@ -84,16 +99,37 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void abrirGaleria(){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Seleccione una imagen"), PICK_FOTO);
+    }
     private void loadInfo() {
         onCreateOptionsMenu(myToolbar.getMenu());
         //Sirve para reconocer el click de los item del menu de la toolbar
         myToolbar.setOnMenuItemClickListener(item -> onOptionsItemSelected(item));
         List<Movie> listMovies = new ArrayList<>();
-        listMovies.add(new Movie(R.drawable.bloodshot,"Bloodshot" ,"Ray Garrison, un soldado de élite que murió en combate, es resucitado gracias a una avanzada tecnología que también le da la habilidad de fuerza sobrehumana y rápida recuperación. Basada en el comic."));
-        listMovies.add(new Movie(R.drawable.bad_boys,"Bad Boys" ,"Marcus y Mike deben confrontar cambios de carrera y crisis de edad media, cuando se unen a un equipo de élite recién creado del departamento de policía de Miami para capturar al implacable Armando Armas, líder de un cartel de drogas."));
-        listMovies.add(new Movie(R.drawable.jumanji,"Jumanji" ,"Sobre un juego"));
-        movieAdapter= new MovieAdapter(this,listMovies);
-        listViewMovies.setAdapter(movieAdapter);
+        myDatabase.child("Peliculas").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    for(DataSnapshot ds: dataSnapshot.getChildren()){
+                        String urlImagen = ds.child("url").getValue().toString();
+                        String name = ds.child("nombre").getValue().toString();
+                        String descripcion =ds.child("descripcion").getValue().toString();
+                        listMovies.add(new Movie( urlImagen, name , descripcion));
+                    }
+                    movieAdapter= new MovieAdapter(getBaseContext(),listMovies);
+                    listViewMovies.setAdapter(movieAdapter);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
