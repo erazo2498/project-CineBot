@@ -16,4 +16,5 @@
     <string name="tituloLogin">Welcome to CineBot</string>
     <string name="registrarse">If you don\'t have an account? Create it here</string>
     <string name="registrar">Register</string>
+    <string name="email">email</string>
 </resources>

@@ -7,6 +7,7 @@
     <string name="buscar">Buscar</string>
     <string name="titulo">Titulo: </string>
     <string name="usuario">Usuario</string>
+    <string name="email">correo electronico</string>
     <string name="contraseña">Contraseña</string>
     <string name="Ingresar">Ingresar</string>
     <string name="registrar">Registrar</string>

@@ -19,6 +19,8 @@ import com.edu.cinebot.R;
 import com.edu.cinebot.adapter.MovieAdapter;
 import com.edu.cinebot.entity.Movie;
 import com.edu.cinebot.view.InfoActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,13 +36,14 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.mytoolbar)
     public Toolbar myToolbar;
     private MovieAdapter movieAdapter;
-
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setSupportActionBar(myToolbar);
         ButterKnife.bind(this);
+        mAuth = FirebaseAuth.getInstance();
         loadInfo();
         searchOnTextListener();
         onMovieClickListener();
@@ -125,5 +128,18 @@ public class MainActivity extends AppCompatActivity {
     public void goToChatBotActivity(View view) {
         Intent intent = new Intent(getApplicationContext(), ChatBotActivity.class);
         startActivity(intent);
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        //updateUI(currentUser);
+    }
+    public void logout(View view) {
+        Toast.makeText(this,"Has pulsado Logout",Toast.LENGTH_SHORT).show();
+        mAuth.signOut();
+        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        finish();
     }
 }
